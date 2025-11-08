@@ -1,4 +1,5 @@
 export interface Project {
+  _id: number;
   thumbnail: string;
   id: number;
   title: string;

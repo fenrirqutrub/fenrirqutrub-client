@@ -93,7 +93,7 @@ const MagneticProjectCard = ({
         {/* Image */}
         <div className="w-full h-48 overflow-hidden bg-[#0D1117]">
           <img
-            src={project.image || project.thumbnail}
+            src={project.image}
             alt={project.title}
             className="object-cover w-full h-full"
           />
@@ -161,21 +161,49 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [activeIndex, setActiveIndex] = useState(0);
 
+  // ✅ Fetch projects from server API
   const {
-    data: projects,
+    data: projectsResponse,
     isLoading,
     error,
-  } = useQuery<Project[]>({
+  } = useQuery({
     queryKey: ["projects"],
     queryFn: async () => {
-      const { data } = await axios.get("/projects.json");
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/projects`
+      );
       return data;
     },
   });
 
-  if (isLoading) return <div className="text-white">Loading...</div>;
+  const projects = projectsResponse?.data || [];
+
+  if (isLoading)
+    return (
+      <div
+        className={`min-h-screen flex items-center justify-center ${
+          theme === "dark" ? "bg-[#0C0D12]" : "bg-[#E9EBED]"
+        }`}
+      >
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-red-500 mx-auto mb-4"></div>
+          <p className={theme === "dark" ? "text-[#E9EBED]" : "text-[#0C0D12]"}>
+            Loading projects...
+          </p>
+        </div>
+      </div>
+    );
+
   if (error)
-    return <div className="text-white">{(error as Error).message}</div>;
+    return (
+      <div
+        className={`min-h-screen flex items-center justify-center ${
+          theme === "dark" ? "bg-[#0C0D12]" : "bg-[#E9EBED]"
+        }`}
+      >
+        <p className="text-red-500">Error: {(error as Error).message}</p>
+      </div>
+    );
 
   return (
     <section className="min-h-fit">
@@ -238,9 +266,9 @@ export default function Projects() {
                 setActiveIndex(swiper.realIndex);
               }}
             >
-              {projects.map((project, index) => (
+              {projects.map((project: Project, index: number) => (
                 <SwiperSlide
-                  key={project.id}
+                  key={project._id || project.id}
                   style={{
                     width: "300px",
                     maxWidth: "90vw",

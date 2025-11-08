@@ -34,7 +34,7 @@ const GridProjectCard = ({
       {/* Image */}
       <div className="relative w-full h-56 overflow-hidden bg-[#0D1117]">
         <img
-          src={project.image || project.thumbnail}
+          src={project.image}
           alt={project.title}
           className="object-cover w-full h-full transition-transform duration-500 hover:scale-110"
         />
@@ -97,32 +97,37 @@ const ProjectsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  // Fetch projects using the same query as the slider
+  // ✅ Fetch projects from server API
   const {
-    data: projects,
+    data: projectsResponse,
     isLoading,
     error,
-  } = useQuery<Project[]>({
-    queryKey: ["project"],
+  } = useQuery({
+    queryKey: ["projects"],
     queryFn: async () => {
-      const { data } = await axios.get("/projects.json");
+      const { data } = await axios.get(
+        `${import.meta.env.VITE_API_URL}/api/projects`
+      );
       return data;
     },
   });
 
-  // Filter projects based on search and category
-  const filteredProjects = projects?.filter((project) => {
+  const projects = projectsResponse?.data || [];
+
+  // Filter projects based on search
+  const filteredProjects = projects.filter((project: Project) => {
     const matchesSearch =
       project.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
       project.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      project.technologies.some((tech) =>
-        tech.toLowerCase().includes(searchQuery.toLowerCase())
-      );
+      (project.technologies &&
+        project.technologies.some((tech) =>
+          tech.toLowerCase().includes(searchQuery.toLowerCase())
+        ));
 
     return matchesSearch;
   });
 
-  // Reset to page 1 when search or category changes
+  // Reset to page 1 when search changes
   useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
@@ -261,9 +266,9 @@ const ProjectsPage = () => {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               <AnimatePresence>
-                {currentProjects.map((project) => (
+                {currentProjects.map((project: Project) => (
                   <GridProjectCard
-                    key={project.id}
+                    key={project._id || project.id}
                     project={project}
                     onClick={() => setSelectedProject(project)}
                   />
