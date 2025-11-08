@@ -105,7 +105,7 @@ const ProjectsPage = () => {
   } = useQuery<Project[]>({
     queryKey: ["project"],
     queryFn: async () => {
-      const { data } = await axios.get("/project.json");
+      const { data } = await axios.get("/projects.json");
       return data;
     },
   });

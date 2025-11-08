@@ -168,7 +168,7 @@ export default function Projects() {
   } = useQuery<Project[]>({
     queryKey: ["projects"],
     queryFn: async () => {
-      const { data } = await axios.get("/../public/project.json");
+      const { data } = await axios.get("/projects.json");
       return data;
     },
   });
