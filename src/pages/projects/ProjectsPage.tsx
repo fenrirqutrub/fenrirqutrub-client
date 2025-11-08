@@ -5,7 +5,8 @@ import { Search, ChevronLeft, ChevronRight } from "lucide-react";
 import { useTheme } from "../../context/ThemeProvider";
 import type { Project } from "../../components/Projects/Project";
 import ProjectModal from "../../components/Projects/ProjectModal";
-import axios from "axios";
+// ✅ Import JSON directly
+import projectsData from "../../../public/project.json";
 
 // Reusable Project Card for Grid View
 const GridProjectCard = ({
@@ -97,7 +98,7 @@ const ProjectsPage = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 6;
 
-  // Fetch projects using the same query as the slider
+  // ✅ Use imported data directly - no HTTP request needed
   const {
     data: projects,
     isLoading,
@@ -105,8 +106,10 @@ const ProjectsPage = () => {
   } = useQuery<Project[]>({
     queryKey: ["projects"],
     queryFn: async () => {
-      const { data } = await axios.get("/project.json");
-      return data;
+      // Simulate async to maintain query structure
+      return new Promise<Project[]>((resolve) => {
+        setTimeout(() => resolve(projectsData as Project[]), 0);
+      });
     },
   });
 
