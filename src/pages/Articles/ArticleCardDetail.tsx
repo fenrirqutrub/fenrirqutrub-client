@@ -1,8 +1,5 @@
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  vscDarkPlus,
-  vs,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+import { vscDarkPlus } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useNavigate, Link, useLocation, useParams } from "react-router";
 import { useTheme } from "../../context/ThemeProvider";
 import { motion, AnimatePresence } from "framer-motion";
@@ -17,18 +14,11 @@ import {
   Eye,
   Share2,
   Tag,
-  Code,
   Loader2,
   AlertCircle,
   AlertTriangle,
   Copy,
   Check,
-  Terminal,
-  FileCode,
-  Maximize2,
-  Minimize2,
-  X,
-  CircleDot,
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";

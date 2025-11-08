@@ -76,6 +76,7 @@ const ArticleCategoryList = () => {
   });
 
   // Safe article array
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const safeArticles: Article[] = Array.isArray(articlesResponse?.data)
     ? articlesResponse.data
     : [];
@@ -170,11 +171,6 @@ const ArticleCategoryList = () => {
     }
 
     return "Something went wrong";
-  };
-
-  // Format category name for display
-  const formatCategoryName = (cat: string): string => {
-    return cat.charAt(0).toUpperCase() + cat.slice(1).toLowerCase();
   };
 
   return (
