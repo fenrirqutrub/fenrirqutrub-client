@@ -111,7 +111,7 @@ const THEME_COLORS = {
       primary: "#0F172A",
       secondary: "#64748B",
     },
-    border: "rgba(15, 23, 42, 0.1)",
+    border: "#0C0D12",
     hover: "rgba(15, 23, 42, 0.05)",
   },
 } as const;
@@ -173,8 +173,8 @@ const Navbar: React.FC = () => {
       <nav
         className={`fixed z-50 transition-all duration-300 ${
           state.scrolled
-            ? "top-3 left-2 right-2 py-3 shadow-lg rounded border-2"
-            : "top-0 left-0 right-0 py-4"
+            ? "top-3 left-2 right-2 py-3  rounded border border-red-400"
+            : "top-0 left-0 right-0 py-4 "
         }`}
         style={{
           backgroundColor: state.scrolled ? colors.bg.primary : "transparent",
