@@ -1,7 +1,9 @@
 import { Outlet } from "react-router";
+import { Suspense } from "react";
 import Navbar from "../components/Navbar/Navbar";
 import { useTheme } from "../context/ThemeProvider";
 import Contact from "../components/Contact/Contact";
+import PageLoader from "../components/ui/PagLoader";
 
 const Root = () => {
   const { theme } = useTheme();
@@ -16,7 +18,9 @@ const Root = () => {
     >
       <div className="container mx-auto">
         <Navbar />
-        <Outlet />
+        <Suspense fallback={<PageLoader />}>
+          <Outlet />
+        </Suspense>
         <Contact />
       </div>
     </div>
