@@ -92,7 +92,7 @@ const THEME_COLORS = {
     bg: {
       primary: "#0D0F14",
       secondary: "#171B1F",
-      mobile: "#0A0E27",
+      mobile: "#0C0D12",
     },
     text: {
       primary: "#F8F9FA",
@@ -214,7 +214,7 @@ const Navbar: React.FC = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link to="/">
-              <h2
+              <button
                 className="relative text-2xl md:text-3xl pacifico leading-none cursor-pointer"
                 aria-label="Fenrir Qutrub"
                 onClick={handleLogo}
@@ -283,7 +283,7 @@ const Navbar: React.FC = () => {
                     Fenrir Qutrub
                   </span>
                 </span>
-              </h2>
+              </button>
             </Link>
 
             {/* Desktop Menu */}
@@ -398,11 +398,11 @@ const Navbar: React.FC = () => {
                     exit="exit"
                   >
                     <motion.h2
-                      className="text-5xl md:text-6xl font-bold mb-16"
+                      className="text-5xl md:text-6xl font-bold mb-16 pacifico"
                       style={{ color: colors.text.primary }}
                       variants={ITEM_VARIANTS}
                     >
-                      Navigation
+                      Fenrir Qutrub
                     </motion.h2>
 
                     {/* Items */}
