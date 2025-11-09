@@ -24,12 +24,9 @@ const AddCategory = () => {
   const onSubmit: SubmitHandler<CategoryFormData> = async (data) => {
     setIsLoading(true);
     try {
-      const response = await axiosPublic.post(
-        "http://localhost:5000/api/categories",
-        {
-          categoryName: data.categoryName,
-        }
-      );
+      const response = await axiosPublic.post("api/categories", {
+        categoryName: data.categoryName,
+      });
 
       if (response.data.success) {
         toast.success(`Category "${data.categoryName}" added successfully!`);
