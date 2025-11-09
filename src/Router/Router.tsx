@@ -48,7 +48,6 @@ const Router = () => {
         <Route path="/addcategory" element={<AddCategory />} />
         <Route path="/managearticles" element={<ManageArticles />} />
         <Route path="/addarticles" element={<AddArticles />} />
-        <Route path="/projects" element={<ProjectsPage />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>
