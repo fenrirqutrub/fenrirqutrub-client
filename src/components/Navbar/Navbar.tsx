@@ -173,7 +173,7 @@ const Navbar: React.FC = () => {
       <nav
         className={`fixed z-50 transition-all duration-300 ${
           state.scrolled
-            ? "top-3 left-2 right-2 py-3  rounded border border-red-400"
+            ? "top-3 left-2 right-2 py-3  rounded-2xl border"
             : "top-0 left-0 right-0 py-4 "
         }`}
         style={{
@@ -265,7 +265,7 @@ const Navbar: React.FC = () => {
                   <li key={item.name} className="relative">
                     <button
                       onClick={() => navigate(item.path)}
-                      className="px-5 py-2.5 rounded-lg font-medium capitalize transition-all cursor-pointer relative z-10 border border-red-500"
+                      className="px-5 py-2.5 rounded-lg font-medium capitalize transition-all cursor-pointer relative z-10"
                       style={{
                         color: isActive
                           ? colors.text.primary
@@ -277,8 +277,11 @@ const Navbar: React.FC = () => {
                     {isActive && (
                       <motion.div
                         layoutId="desktopActiveTab"
-                        className="absolute inset-0 rounded-lg"
-                        style={{ backgroundColor: colors.bg.secondary }}
+                        className="absolute inset-0 rounded-lg border"
+                        style={{
+                          backgroundColor: colors.bg.secondary,
+                          borderColor: colors.border,
+                        }}
                         transition={{
                           type: "spring",
                           stiffness: 350,

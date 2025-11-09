@@ -4,7 +4,6 @@ import { useQuery } from "@tanstack/react-query";
 import ArticleCard from "./ArticleCard";
 import { Loader2, AlertCircle, RefreshCcw } from "lucide-react";
 import { useState, useEffect, type JSX } from "react";
-import { axiosPublic } from "../../hooks/axiosPublic";
 import axios from "axios";
 
 interface Article {
@@ -79,6 +78,7 @@ const Articles = () => {
 
   // Reset to page 1 if current page exceeds total pages
   useEffect(() => {
+    window.scrollTo(0, 0);
     if (totalPages > 0 && currentPage > totalPages) {
       setCurrentPage(1);
     }

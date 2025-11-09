@@ -130,6 +130,7 @@ const ProjectsPage = () => {
   // Reset to page 1 when search changes
   useEffect(() => {
     setCurrentPage(1);
+    window.scrollTo(0, 0);
   }, [searchQuery]);
 
   // Pagination calculations

@@ -96,6 +96,10 @@ const ArticlesByCategory = () => {
     setCurrentPage(1);
   }, [category]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // Pagination handlers
   const handlePrevious = () => {
     if (currentPage > 1) {

@@ -383,7 +383,12 @@ const ArticleCardDetail = () => {
       trackViewMutation.mutate(article._id);
       setHasTrackedView(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [article?._id, hasTrackedView]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   // ────────────────────────────────
   // Fetch Like Status

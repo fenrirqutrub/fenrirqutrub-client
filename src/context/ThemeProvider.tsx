@@ -19,6 +19,7 @@ interface ThemeContextType {
 const ThemeContext = createContext<ThemeContextType | undefined>(undefined);
 
 const ANIMATION_CORNER: Corner = "bottom-left";
+const THEME_STORAGE_KEY = "theme";
 
 const CLIP_PATHS: Record<Corner, { from: string; to: string }> = {
   "top-right": { from: "circle(0% at 100% 0%)", to: "circle(150% at 100% 0%)" },
@@ -56,6 +57,28 @@ const THEME_COLORS: Record<
   },
 } as const;
 
+// Get theme from localStorage or return default
+const getInitialTheme = (): Theme => {
+  try {
+    const savedTheme = localStorage.getItem(THEME_STORAGE_KEY);
+    if (savedTheme === "light" || savedTheme === "dark") {
+      return savedTheme;
+    }
+  } catch (error) {
+    console.error("Error reading theme from localStorage:", error);
+  }
+  return "dark"; // Default theme
+};
+
+// Save theme to localStorage
+const saveTheme = (theme: Theme): void => {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch (error) {
+    console.error("Error saving theme to localStorage:", error);
+  }
+};
+
 // eslint-disable-next-line react-refresh/only-export-components
 export function useTheme() {
   const context = useContext(ThemeContext);
@@ -64,10 +87,11 @@ export function useTheme() {
 }
 
 export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>(getInitialTheme);
   const [isAnimating, setIsAnimating] = useState(false);
   const [nextTheme, setNextTheme] = useState<Theme>(theme);
 
+  // Apply theme to body className
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -76,6 +100,10 @@ export const ThemeProvider: FC<{ children: ReactNode }> = ({ children }) => {
     const newTheme: Theme = theme === "light" ? "dark" : "light";
     setNextTheme(newTheme);
     setIsAnimating(true);
+
+    // Save to localStorage immediately
+    saveTheme(newTheme);
+
     setTimeout(() => setTheme(newTheme), 200);
     setTimeout(() => setIsAnimating(false), 500);
   };

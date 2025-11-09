@@ -9,7 +9,7 @@ import {
   Layers,
   TrendingUp,
 } from "lucide-react";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { axiosPublic } from "../../hooks/axiosPublic";
 import { Link } from "react-router";
 
@@ -75,7 +75,10 @@ const ArticleCategoryList = () => {
     retryDelay: (attemptIndex) => Math.min(1000 * 2 ** attemptIndex, 30000),
   });
 
-  // Safe article array
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const safeArticles: Article[] = Array.isArray(articlesResponse?.data)
     ? articlesResponse.data
@@ -201,7 +204,7 @@ const ArticleCategoryList = () => {
               />
             </div>
             <h1
-              className={`text-4xl md:text-5xl lg:text-6xl rubik-bold transition-colors duration-300 ${
+              className={`text-3xl md:text-5xl rubik-bold transition-colors duration-300 ${
                 theme === "dark" ? "text-[#F8F9FA]" : "text-[#0C0D12]"
               }`}
             >
