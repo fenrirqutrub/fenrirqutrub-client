@@ -166,6 +166,34 @@ const Navbar: React.FC = () => {
     navigate(path);
   };
 
+  const handleLogo = () => {
+    const scrollTop = window.scrollY;
+    const scrollHeight = document.documentElement.scrollHeight;
+    const clientHeight = window.innerHeight;
+    const maxScroll = scrollHeight - clientHeight;
+
+    const nearTop = scrollTop <= 50;
+    const nearBottom = maxScroll - scrollTop <= 50;
+
+    if (nearTop) {
+      window.scrollTo({
+        top: scrollHeight,
+        behavior: "smooth",
+      });
+    } else if (nearBottom) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      if (scrollTop < maxScroll / 2) {
+        window.scrollTo({ top: scrollHeight, behavior: "smooth" });
+      } else {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }
+    }
+  };
+
   // ------------------ RENDER ------------------
 
   return (
@@ -189,6 +217,7 @@ const Navbar: React.FC = () => {
               <h2
                 className="relative text-2xl md:text-3xl pacifico leading-none cursor-pointer"
                 aria-label="Fenrir Qutrub"
+                onClick={handleLogo}
               >
                 {/* Desktop: single clean layer */}
                 <span

@@ -21,8 +21,8 @@ const Contact = () => {
           <Social />
         </div>
 
-        <div className="border-t dark:border-slate-700 border-gray-200 py-[20px] flex items-center w-full flex-wrap gap-[20px] justify-center">
-          <p className="text-[0.8rem] dark:text-slate-500 sm:text-[0.9rem] text-gray-600 py-0">
+        <div className="border-t  border-[oklch(70.7% 0.022 261.325)] py-[20px] flex items-center w-full flex-wrap gap-[20px] justify-center">
+          <p className="text-[0.8rem] sm:text-[0.9rem] text-gray-600 py-0 rubik-regular">
             &copy; 2021 All Rights Reserved by{" "}
             <Link to="/admin-login" className="rubik-bold">
               Fenrir Qutrub
