@@ -5,6 +5,7 @@ import ArticleCard from "./ArticleCard";
 import { Loader2, AlertCircle, RefreshCcw } from "lucide-react";
 import { useState, useEffect, type JSX } from "react";
 import { axiosPublic } from "../../hooks/axiosPublic";
+import axios from "axios";
 
 interface Article {
   _id: string;
@@ -38,12 +39,17 @@ const Articles = () => {
     queryKey: ["articles", currentPage, itemsPerPage],
     queryFn: async () => {
       try {
-        const { data } = await axiosPublic.get("/api/articles", {
-          params: {
-            page: currentPage,
-            limit: itemsPerPage,
-          },
-        });
+        const { data } = await axios.get(
+          "https://fenrirqutrub-server.vercel.app/api/articles",
+          // await axiosPublic.get("/api/articles",
+          {
+            params: {
+              page: currentPage,
+              limit: itemsPerPage,
+            },
+            withCredentials: false,
+          }
+        );
 
         // Validate response data
         if (!data || !data.success) {
