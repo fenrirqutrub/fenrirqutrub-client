@@ -84,11 +84,11 @@ const UpDown: React.FC = () => {
         {/* BULB — FontAwesome with proper wrapper */}
         <div className="relative w-16 h-16 md:w-20 md:h-20 flex items-center justify-center">
           {theme === "dark" ? (
-            <FaLightbulb className="w-10 h-10 md:w-12 md:h-12 text-[#FACC15] drop-shadow(0 0 12px rgba(250, 204, 21, 0.8))" />
+            <FaLightbulb className="w-6 h-6 md:w-12 md:h-12 text-[#FACC15] drop-shadow(0 0 12px rgba(250, 204, 21, 0.8))" />
           ) : (
             <FaLightbulb
               // <FaRegLightbulb
-              className="w-10 h-10 md:w-12 md:h-12 text-[#FACC15] drop-shadow(0 0 16px rgba(250, 204, 21, 0.9))"
+              className="w-6 h-6 md:w-12 md:h-12 text-[#FACC15] drop-shadow(0 0 16px rgba(250, 204, 21, 0.9))"
             />
           )}
         </div>
