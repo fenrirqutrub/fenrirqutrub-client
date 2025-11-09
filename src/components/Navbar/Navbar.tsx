@@ -265,7 +265,7 @@ const Navbar: React.FC = () => {
                   <li key={item.name} className="relative">
                     <button
                       onClick={() => navigate(item.path)}
-                      className="px-5 py-2.5 rounded-lg font-medium capitalize transition-all cursor-pointer relative z-10"
+                      className="px-5 py-2.5 rounded-lg font-medium capitalize transition-all cursor-pointer relative z-10 border border-red-500"
                       style={{
                         color: isActive
                           ? colors.text.primary
