@@ -111,7 +111,7 @@ const THEME_COLORS = {
       primary: "#0F172A",
       secondary: "#64748B",
     },
-    border: "#0C0D12",
+    border: "gray-400",
     hover: "rgba(15, 23, 42, 0.05)",
   },
 } as const;
