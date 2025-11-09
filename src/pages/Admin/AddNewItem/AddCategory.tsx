@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { useForm, type SubmitHandler } from "react-hook-form";
 import { motion } from "framer-motion";
 import { MdCategory } from "react-icons/md";
